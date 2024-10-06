@@ -150,10 +150,11 @@ void loop()
       hum_s = hum_s / 2;
       time_20s = 0;
       float error;
-      
+
       error = fabs(fabs(bmp280_raw) - fabs(temp_am_raw));
       publish_send("vostok_fabs", error);
-
+      publish_send("temp_zapad", bmp280_raw);
+/*
       if (!isnan(hum_s) && !isnan(temp_s) && (error < 1.5))
       {
         publish_send("temp_zapad", temp_s);
@@ -167,12 +168,16 @@ void loop()
       {
         reset++;
         mil_o = 999999;
+        publish_send("am_zapad", temp_am_raw);
+        publish_send("bmp_zapad", bmp280_raw);
         publish_send("temp_zapad", mil_o);
         if (reset > 5)
         {
           ESP.restart();
         }
       }
+
+*/
       hum_s = 0;
       temp_s = 0;
     }
