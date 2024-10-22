@@ -155,31 +155,41 @@ void loop()
       publish_send("vostok_fabs", error);
       publish_send("temp_zapad", bmp280_raw);
       publish_send("bmp_zapad_pres", bmp280_raw_pres);
-      publish_send("hum_zapad", hum_s);
-/*
-      if (!isnan(hum_s) && !isnan(temp_s) && (error < 1.5))
+      publish_send("am_zapad", temp_am_raw);
+      publish_send("bmp_zapad", bmp280_raw);
+      if (hum_s > 0)
       {
-        publish_send("temp_zapad", temp_s);
-        publish_send("hum_zapad", hum_s);
-        publish_send("am_zapad", temp_am_raw);
-        publish_send("bmp_zapad", bmp280_raw);
-        publish_send("bmp_zapad_pres", bmp280_raw_pres);
-        reset = 0;
+        publish_send("hum_vostok", hum_s);
       }
       else
       {
-        reset++;
-        mil_o = 999999;
-        publish_send("am_zapad", temp_am_raw);
-        publish_send("bmp_zapad", bmp280_raw);
-        publish_send("temp_zapad", mil_o);
-        if (reset > 5)
-        {
-          ESP.restart();
-        }
+        hum_s = 99999;
+        publish_send("hum_vostok", hum_s);
       }
+      /*
+            if (!isnan(hum_s) && !isnan(temp_s) && (error < 1.5))
+            {
+              publish_send("temp_zapad", temp_s);
+              publish_send("hum_zapad", hum_s);
+              publish_send("am_zapad", temp_am_raw);
+              publish_send("bmp_zapad", bmp280_raw);
+              publish_send("bmp_zapad_pres", bmp280_raw_pres);
+              reset = 0;
+            }
+            else
+            {
+              reset++;
+              mil_o = 999999;
+              publish_send("am_zapad", temp_am_raw);
+              publish_send("bmp_zapad", bmp280_raw);
+              publish_send("temp_zapad", mil_o);
+              if (reset > 5)
+              {
+                ESP.restart();
+              }
+            }
 
-*/
+      */
       hum_s = 0;
       temp_s = 0;
     }
