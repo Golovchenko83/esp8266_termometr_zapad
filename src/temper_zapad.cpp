@@ -152,7 +152,6 @@ void loop()
       float error;
 
       error = fabs(fabs(bmp280_raw) - fabs(temp_am_raw));
-      publish_send("vostok_fabs", error);
       publish_send("temp_zapad", bmp280_raw);
       publish_send("bmp_zapad_pres", bmp280_raw_pres);
       publish_send("am_zapad", temp_am_raw);
